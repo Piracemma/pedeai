@@ -10,9 +10,25 @@
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model.live="email" id="email" class="block mt-1 w-full" type="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input wire:model.live="username" id="username" class="block mt-1 w-full" type="text" :value="old('username')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+
+        <!-- Vendedor -->
+        <div class="mt-4">
+            <x-input-label for="vendedor" :value="__('Vendedor?')" />
+            <div class="mt-2">
+                <div class="inline-block mx-2">
+                    <input type="radio" name="vendedor" wire:model.live="vendedor" value="false">
+                    <p class="inline-block font-medium text-sm text-gray-700 dark:text-gray-300">Não</p>
+                </div>
+                <div class="inline-block mx-2">
+                    <input type="radio" name="vendedor" wire:model.live="vendedor" value="true">
+                    <p class="inline-block font-medium text-sm text-gray-700 dark:text-gray-300">Sim</p>
+                </div>
+            </div>
+            <x-input-error :messages="$errors->get('vendedor')" class="mt-2" />
         </div>
 
         <!-- Password -->
