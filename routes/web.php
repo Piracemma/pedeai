@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Categorias;
 use App\Livewire\Dashboard;
 use App\Livewire\Vendedor;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'usuario'])->group(function () {
 Route::middleware(['auth', 'vendedor'])->group(function () {
 
     Route::get('/vendedor', Vendedor::class)->name('vendedor');
+    Route::get('/categorias', Categorias::class)->name('categorias');
 
 });
 
