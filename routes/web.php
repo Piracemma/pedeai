@@ -36,7 +36,7 @@ Route::middleware(['auth', 'usuario'])->group(function () {
 
 Route::middleware(['auth', 'vendedor'])->group(function () {
 
-    Route::get('/vendedor', Vendedor::class)->name('dashboard');
+    Route::get('/vendedor', Vendedor::class)->name('vendedor');
 
 });
 
