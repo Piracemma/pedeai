@@ -14,7 +14,7 @@ class Categorias extends Component
     public function render()
     {
         return view('livewire.categorias', [
-            'categorias' => user()->categorias()->orderBy('updated_at', 'desc')->get()
+            'categorias' => user()->categorias()->select(['id', 'nome'])->orderBy('updated_at', 'desc')->get()
         ]);
     }
 
@@ -26,6 +26,8 @@ class Categorias extends Component
         $categoria = user()->categorias()->create([
             'nome' => $this->categoria,
         ]);
+
+        $this->categoria = '';
 
         if(!empty($categoria->id)){
             session()->flash('sucesso', 'Criado com sucesso!');

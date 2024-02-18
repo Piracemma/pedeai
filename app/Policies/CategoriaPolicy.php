@@ -32,12 +32,4 @@ class CategoriaPolicy
     {
         return $user?->id === $categoria->user_id;
     }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function edit(User $user, Categoria $categoria): bool
-    {
-        return $user?->id === $categoria->user_id;
-    }
 }

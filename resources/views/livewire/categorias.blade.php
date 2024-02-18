@@ -6,6 +6,16 @@
                 <span class="font-medium">Categoria Criada!</span>
             </div>
         @endif
+        @if (session('deletado'))
+            <div class="p-4 mb-4 absolute top-16 left-5 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                <span class="font-medium">Categoria Excluida!</span>
+            </div>
+        @endif
+        @if (session('editado'))
+            <div class="p-4 mb-4 absolute top-16 left-5 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                <span class="font-medium">Categoria Editada!</span>
+            </div>
+        @endif
         @if (session('erro'))
             <div class="p-4 mb-4 absolute top-16 left-5 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                 <span class="font-medium">Erro ao criar Categoria!</span>
@@ -34,10 +44,36 @@
             </form>
         </div>
 
-        <div>
-            @foreach ($categorias as $categoria)
-                <p>Categoria:: {{ $categoria->nome }}</p>
-            @endforeach
+        <div class="mt-5 mb-10">
+            @empty(!$categorias)
+                
+
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    #
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Categoria
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Ações
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($categorias as $categoria)
+                                <livewire:itens-categoria :categoria="$categoria" :key="$categoria->id" @edit="$refresh" />
+                            @endforeach
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            @endempty
         </div>
 
     </x-container-g>
