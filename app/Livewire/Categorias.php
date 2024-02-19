@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Categoria;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -11,6 +12,7 @@ class Categorias extends Component
     #[Validate(['required', 'string', 'min:3', 'max:30'])]
     public string $categoria = '';
 
+    #[Layout('components.layouts.app',['cadastros' => true])]
     public function render()
     {
         return view('livewire.categorias', [

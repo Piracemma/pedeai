@@ -8,9 +8,14 @@
             <form wire:submit="save" class="block md:w-4/5 w-full mx-5">
 
                 <div class="block my-3">
-                    <x-input-label value="Nova Categoria"/>
-                    <x-text-input wire:model.live="categoria" class="mt-3"/>
-                    @error('categoria')
+                    <x-input-label value="Novo Opcional"/>
+                    <x-text-input wire:model="nome" class="my-3"/>
+                    @error('nome')
+                        <x-input-error messages="*{{$message}}"/>
+                    @enderror  
+                    <x-input-label value="Preço"/>
+                    <x-text-input type='number' wire:model="preco" class="mt-3" step="0.01"/>
+                    @error('preco')
                         <x-input-error messages="*{{$message}}"/>
                     @enderror                    
                 </div>
@@ -36,7 +41,10 @@
                                 #
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Categoria
+                                Opcional
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Preço
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Ações
@@ -45,10 +53,10 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($categorias as $categoria)
-                            <livewire:itens-categoria :categoria="$categoria" :key="$categoria->id" />
+                        @foreach ($opcionais as $opcional)
+                            <livewire:itens-opcional :opcional="$opcional" :key="$opcional->id" />
                         @endforeach
-                        
+
                     </tbody>
                 </table>
             </div>
