@@ -38,7 +38,7 @@ class ItensCategoria extends Component
 
         session()->flash('editado', 'Criado com sucesso!');
 
-        $this->redirect('categorias');
+        $this->redirect('/cadastros/categorias');
 
     }
 
@@ -52,7 +52,7 @@ class ItensCategoria extends Component
 
         session()->flash('deletado', 'Criado com sucesso!');
 
-        $this->redirect('categorias');
+        $this->redirect('/cadastros/categorias');
 
     }
 }

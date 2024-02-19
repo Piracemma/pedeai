@@ -11,13 +11,24 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Alpine Plugins -->
+        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+        
+        <!-- Alpine Core -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @if (Auth::user()->vendedor == true)
-                <x-layouts.navvendedor />
+                @php
+                    $page = false;
+                    if(isset($cadastros)){ 
+                        $page = true; 
+                    }
+                @endphp
+                <x-layouts.navvendedor :cadastros="$page" />
             @else
                 <x-layouts.navuser />
             @endif
