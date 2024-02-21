@@ -42,5 +42,7 @@ class Opcionais extends Component
             session()->flash('erro', 'Erro ao criar Opcional!');
         }
 
+        $this->redirect('/cadastros/opcionais');
+
     }
 }

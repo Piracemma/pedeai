@@ -49,35 +49,67 @@
 
                     <div class="my-2">
                         <x-input-label class="mb-1" value="Categoria"/>
-                        <select  wire:model.live="produto.categoria" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full">
-                            <option selected>Choose a country</option>
-                            <option value="4">United States</option>
-                            <option value="3">Canada</option>
-                            <option value="2">France</option>
-                            <option value="1">Categoria</option>
-                          </select>
-                        @error('produto.categoria')
-                            <x-input-error :messages="$message" />
-                        @enderror
+                        @if ($todas_categorias->isNotEmpty())
+
+                            
+                            <select  wire:model.live="produto.categoria" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full">
+                                <option selected>Seleciona a Categoria</option>
+                                @foreach ($todas_categorias as $categoria)
+                                    <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                                @endforeach   
+                            </select>
+                            @error('produto.categoria')
+                                <x-input-error :messages="$message" />
+                            @enderror
+
+                        @else
+
+                            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                </svg>
+                                <span class="sr-only">Info</span>
+                                <div>
+                                  <span class="font-bold">Nenhuma Categoria Cadastrada!</span> Cadastre uma Categoria para continuar.
+                                </div>
+                            </div>
+
+                        @endif
+                        
                     </div>
 
                     <div class="my-2">
                         <x-input-label class="mb-1" value="Opcionais"/>
-                        <div class="inline-block">
-                            <div class="flex items-center px-4 border bg-white border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                <input wire:model.live="produto.opcionais" value="1" id="bordered-checkbox-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hambuguer extra</label>
+                        @if ($todos_opcionais->isNotEmpty())
+
+                            @foreach ($todos_opcionais as $opcional)
+                            
+                                <div class="inline-block my-1">
+                                    <div class="flex items-center px-4 border bg-white border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                        <input wire:model.live="produto.opcionais" value="{{ $opcional->id }}" id="bordered-checkbox-{{ $opcional->id }}" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="bordered-checkbox-{{ $opcional->id }}" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $opcional->nome }} - R$ {{ number_format($opcional->preco, 2, ',') }}</label>
+                                    </div>
+                                </div>
+
+                            @endforeach
+
+                            @error('produto.opcionais')
+                                <x-input-error :messages="$message" />
+                            @enderror
+                            
+                        @else
+
+                            <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                </svg>
+                                <span class="sr-only">Info</span>
+                                <div>
+                                <span class="font-bold">Nenhum Opcional Cadastrado!</span> *Não impede a criação do produto.
+                                </div>
                             </div>
-                        </div>
-                        <div class="inline-block">
-                            <div class="flex items-center px-4 border bg-white border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                <input wire:model.live="produto.opcionais" value="2" id="bordered-checkbox-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="bordered-checkbox-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">bombom</label>
-                            </div>
-                        </div>
-                        @error('produto.opcionais')
-                            <x-input-error :messages="$message" />
-                        @enderror
+                            
+                        @endif
                     </div>
 
                 </div>
@@ -93,7 +125,15 @@
             </form>
         </div>
 
+        <hr class="my-10">
 
+        <div class="flex justify-center">
+            <div class="block md:w-4/5 w-full mx-5 text-center">
+                @foreach ($produtosss as $item)
+                    <livewire:produto-item :produtoItem="$item" />
+                @endforeach
+            </div>            
+        </div>
 
 
     </x-container-g>
