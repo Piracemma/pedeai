@@ -9,12 +9,12 @@
 
                 <div class="block my-3">
                     <x-input-label value="Novo Opcional"/>
-                    <x-text-input wire:model="nome" class="my-3"/>
+                    <x-text-input wire:model.live="nome" class="my-3"/>
                     @error('nome')
                         <x-input-error messages="*{{$message}}"/>
                     @enderror  
                     <x-input-label value="Preço"/>
-                    <x-text-input type='number' wire:model="preco" class="mt-3" step="0.01"/>
+                    <x-text-input type='number' wire:model.live="preco" class="mt-3" step="0.01"/>
                     @error('preco')
                         <x-input-error messages="*{{$message}}"/>
                     @enderror                    
