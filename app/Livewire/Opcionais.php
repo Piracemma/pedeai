@@ -12,8 +12,8 @@ class Opcionais extends Component
     #[Validate(['required', 'string', 'min:3', 'max:30'])]
     public string $nome = '';
 
-    #[Validate(['required', 'min:0', 'max:50'])]
-    public float $preco = 0.00;
+    #[Validate(['required', 'decimal:0,2'])]
+    public ?float $preco;
 
     #[Layout('components.layouts.app',['cadastros' => true])]
     public function render()
@@ -34,7 +34,7 @@ class Opcionais extends Component
         ]);
 
         $this->nome = '';
-        $this->preco = 0.00;
+        $this->preco;
 
         if(!empty($opcional->id)){
             session()->flash('sucesso', 'Criado com sucesso!');

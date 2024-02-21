@@ -13,7 +13,7 @@ class ItensOpcional extends Component
     #[Validate(['required', 'string', 'min:3', 'max:30'])]
     public string $novoOpcional;
 
-    #[Validate(['required', 'min:0', 'max:50'])]
+    #[Validate(['required', 'decimal:0,2'])]
     public float $novoPreco;
 
     public function mount(Opcional $opcional)
