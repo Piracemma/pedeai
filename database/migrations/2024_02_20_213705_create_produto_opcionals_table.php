@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Opcional;
 use App\Models\Produto;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('opcionais', function (Blueprint $table) {
+        Schema::create('produto_opcional', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->string('nome', 30);
-            $table->float('preco');
+            $table->foreignIdFor(Produto::class);
+            $table->foreignIdFor(Opcional::class);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('opcionais');
+        Schema::dropIfExists('produto_opcionals');
     }
 };
