@@ -130,7 +130,7 @@
         <div class="flex justify-center">
             <div class="block md:w-4/5 w-full mx-5 text-center">
                 @foreach ($produtosss as $item)
-                    <livewire:produto-item :produtoItem="$item" />
+                    <livewire:produto-item :produtoItem="$item" wire:key="produtoitem-{{ $item->id }}" />
                 @endforeach
             </div>            
         </div>
