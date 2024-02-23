@@ -28,9 +28,6 @@ class ProdutosForm extends Form
     #[Validate(['integer', new ValidaCategoria])]
     public $categoria;
 
-    #[Validate(['array', new ValidaOpcionais])]
-    public array $opcionais = [];
-
     public function rules()
     {
         return [

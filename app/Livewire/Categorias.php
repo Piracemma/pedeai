@@ -36,6 +36,7 @@ class Categorias extends Component
         } else {
             session()->flash('erro', 'Erro ao criar Categoria!');
         }
+        $this->dispatch('post-created');
     }
 
 }

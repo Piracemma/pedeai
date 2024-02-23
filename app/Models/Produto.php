@@ -9,9 +9,4 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Produto extends Model
 {
     use HasFactory;
-
-    public function opcionais(): HasMany
-    {
-        return $this->hasMany(ProdutoOpcional::class);
-    }
 }

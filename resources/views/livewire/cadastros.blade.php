@@ -15,12 +15,6 @@
                             {{ __('Categorias') }}
                         </x-nav-link>
                     </li>
-                    <li class="inline-flex items-center">
-                        <span class="text-gray-400 mx-1">/</span>
-                        <x-nav-link wire:navigate :href="route('cadastros.opcionais')" :active="request()->routeIs('cadastros.opcionais')">
-                            {{ __('Opcionais') }}
-                        </x-nav-link>
-                    </li>
                 </ol>
             </nav>
         </x-slot>
