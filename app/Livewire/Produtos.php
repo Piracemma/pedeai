@@ -36,7 +36,7 @@ class Produtos extends Component
             'imagem' => $imagem,
         ]);
 
-        if($produto->isNotEmpty()){
+        if(!empty($produto->id)){
             session()->flash('sucesso', 'Criado com sucesso!');
         } else {
             session()->flash('erro', 'Erro ao criar Opcional!');

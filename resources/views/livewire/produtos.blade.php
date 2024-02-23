@@ -36,6 +36,7 @@
 
                     <div class="my-2">
                         <x-input-label class="mb-1" value="Imagem"/>
+                        <span class="text-xs dark:text-red-400 text-red-600">*A imagem deve ser quadrada.</span>
                         <x-text-input wire:model.live="produto.imagem" type="file" />
                         @if($produto->imagem)
                             <div class="flex justify-start items-center">
@@ -92,16 +93,7 @@
             </form>
         </div>
 
-        <hr class="my-10">
-
-        <div class="flex justify-center">
-            <div class="block md:w-4/5 w-full mx-5 text-center">
-                @foreach ($todos_produtos as $item)
-                    <livewire:produto-item :produtoItem="$item" wire:key="produtoitem-{{ $item->id }}" />
-                @endforeach
-            </div>            
-        </div>
-
+        <div class="my-10"></div>  
 
     </x-container-g>
 </div>
