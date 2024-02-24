@@ -6,10 +6,8 @@ use App\Livewire\Categorias;
 use App\Livewire\Dashboard;
 use App\Livewire\EditarProduto;
 use App\Livewire\ListaProdutos;
-use App\Livewire\Opcionais;
 use App\Livewire\Produtos;
 use App\Livewire\Vendedor;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*

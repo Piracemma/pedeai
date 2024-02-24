@@ -49,7 +49,13 @@ class EditarProduto extends Component
 
         session()->flash('editado', 'Criado com sucesso!');
 
-        $this->redirect('/lista-produtos');
+        return $this->redirectRoute('listaprodutos', navigate: true);
 
     }
+
+    public function voltar()
+    {
+        return $this->redirectRoute('listaprodutos', navigate: true);
+    }
+
 }

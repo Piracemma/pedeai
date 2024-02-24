@@ -2,8 +2,9 @@
     <x-container-g>
         <div class="flex justify-center">
             <form wire:submit="save" class="block md:w-4/5 w-full mx-5">
+                <x-secondary-button type="button" wire:click="voltar">Voltar</x-secondary-button>
 
-                <h3 class="text-xl font-medium text-red-500 dark:text-red-700">*Não é possivel alterar Titulo e Imagem</h3>
+                <h3 class="text-lg font-medium text-red-500 dark:text-red-700">*Não é possivel alterar Titulo e Imagem</h3>
 
                 <div class="block my-3">
                     
