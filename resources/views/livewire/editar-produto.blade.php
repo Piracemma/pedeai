@@ -1,51 +1,39 @@
 <div>
-    <livewire:cadastros />
     <x-container-g>
-
-        <x-popup />
-
         <div class="flex justify-center">
             <form wire:submit="save" class="block md:w-4/5 w-full mx-5">
+
+                <h3 class="text-xl font-medium text-red-500 dark:text-red-700">*Não é possivel alterar Titulo e Imagem</h3>
 
                 <div class="block my-3">
                     
                     <div class="my-2">
                         <x-input-label class="mb-1" value="Produto"/>
-                        <x-text-input wire:model.live="produto.nome"/>
-                        @error('produto.nome')
-                            <x-input-error :messages="$message" />
-                        @enderror
+                        <p class="font-semibold text-lg text-start text-orange-500">{{ $produto->nome }}</p>
                     </div>
 
                     <div class="my-2">
                         <x-input-label class="mb-1" value="Descrição"/>
-                        <x-textarea-input wire:model.live="produto.descricao">
+                        <x-textarea-input wire:model.live="descricao">
                         </x-textarea-input>
-                        @error('produto.descricao')
+                        @error('descricao')
                             <x-input-error :messages="$message" />
                         @enderror
                     </div>
 
                     <div class="my-2">
                         <x-input-label class="mb-1" value="Preço"/>
-                        <x-text-input wire:model="produto.preco" type="number" step="0.01"/>
-                        @error('produto.preco')
+                        <x-text-input wire:model="preco" type="number" step="0.01"/>
+                        @error('preco')
                             <x-input-error :messages="$message" />
                         @enderror
                     </div>
 
                     <div class="my-2">
                         <x-input-label class="mb-1" value="Imagem"/>
-                        <span class="text-xs dark:text-red-400 text-red-600">*A imagem deve ser quadrada.</span>
-                        <x-text-input wire:model.live="produto.imagem" type="file" />
-                        @if($produto->imagem)
-                            <div class="flex justify-start items-center">
-                                <img class="rounded-lg  m-3 opacity-85" width="250" height="250" src="{{ $produto->imagem->temporaryUrl() }}" alt="">
-                            </div>
-                        @endif
-                        @error('produto.imagem')
-                            <x-input-error :messages="$message" />
-                        @enderror
+                        <div class="flex justify-start items-center">
+                            <img class="rounded-lg  my-3 opacity-85" width="250" height="250" src="{{ url($produto->imagem) }}" alt="">
+                        </div>
                     </div>
 
                     <div class="my-2">
@@ -53,8 +41,8 @@
                         @if ($todas_categorias->isNotEmpty())
 
                             
-                            <select  wire:model.live="produto.categoria" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full">
-                                <option selected>Seleciona a Categoria</option>
+                            <select  wire:model.live="categoria" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full">
+                                <option>Seleciona a Categoria</option>
                                 @foreach ($todas_categorias as $categoria)
                                     <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
                                 @endforeach   
@@ -74,7 +62,7 @@
 
                         @endif
 
-                        @error('produto.categoria')
+                        @error('categoria')
                             <x-input-error :messages="$message" />
                         @enderror
                         
@@ -92,8 +80,7 @@
                 </x-primary-button>
             </form>
         </div>
-
-        <div class="my-10"></div>  
+ 
 
     </x-container-g>
 </div>
