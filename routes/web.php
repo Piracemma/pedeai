@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\Cadastros;
 use App\Livewire\Categorias;
 use App\Livewire\Dashboard;
+use App\Livewire\EditarProduto;
 use App\Livewire\ListaProdutos;
 use App\Livewire\Opcionais;
 use App\Livewire\Produtos;
@@ -46,6 +47,7 @@ Route::middleware(['auth', 'vendedor'])->group(function () {
     Route::get('/cadastros/produtos', Produtos::class)->name('cadastros.produtos');
     Route::get('/cadastros', Cadastros::class)->name('cadastros');
     Route::get('/lista-produtos', ListaProdutos::class)->name('listaprodutos');
+    Route::get('/editar-produto/{produto}', EditarProduto::class)->name('editarproduto');
 
 });
 

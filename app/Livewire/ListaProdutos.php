@@ -9,7 +9,7 @@ class ListaProdutos extends Component
     public function render()
     {
         return view('livewire.lista-produtos',[
-            'produtos' => user()->produtos()->get()
+            'produtos' => user()->produtos()->orderBy('updated_at','desc')->get()
         ]);
     }
 }
