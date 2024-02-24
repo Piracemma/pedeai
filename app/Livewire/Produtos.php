@@ -18,8 +18,7 @@ class Produtos extends Component
     {        
         return view('livewire.produtos', [
             'todas_categorias' => user()->categorias()->get(),
-            'todos_opcionais' => user()->opcionais()->get(),
-            'produtosss' => user()->produtos()->get()
+            'todos_produtos' => user()->produtos()->get()
         ]);
     }
 
@@ -36,14 +35,6 @@ class Produtos extends Component
             'preco' => $this->produto->preco,
             'imagem' => $imagem,
         ]);
-
-        foreach($this->produto->opcionais as $opcional){
-
-            $produto->opcionais()->create([
-                'opcional_id' => (int) $opcional,
-            ]);
-
-        }
 
         if(!empty($produto->id)){
             session()->flash('sucesso', 'Criado com sucesso!');

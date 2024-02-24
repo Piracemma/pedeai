@@ -19,6 +19,9 @@
                     <x-nav-link wire:navigate :href="route('cadastros')" :active="$cadastros">
                         {{ __('Cadastros') }}
                     </x-nav-link>
+                    <x-nav-link wire:navigate :href="route('listaprodutos')" :active="request()->routeIs('listaprodutos')">
+                        {{ __('Lista de Produtos') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -80,8 +83,11 @@
             <x-responsive-nav-link wire:navigate :href="route('vendedor')" :active="request()->routeIs('vendedor')">
                 {{ __('Vendedor') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link wire:navigate :href="route('cadastros')" :active="request()->routeIs('cadastros.{page}')">
+            <x-responsive-nav-link wire:navigate :href="route('cadastros')" :active="$cadastros">
                 {{ __('Cadastros') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link wire:navigate :href="route('listaprodutos')" :active="request()->routeIs('listaprodutos')">
+                {{ __('Lista de Produtos') }}
             </x-responsive-nav-link>
         </div>
 

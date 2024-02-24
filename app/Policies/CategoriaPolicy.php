@@ -8,15 +8,6 @@ use Illuminate\Auth\Access\Response;
 
 class CategoriaPolicy
 {
-
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
-    {
-        return $user?->id != null;
-    }
-
     /**
      * Determine whether the user can update the model.
      */

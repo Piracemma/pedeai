@@ -56,4 +56,13 @@
         </div>
 
     </x-container-g>
-</div>
+    @script
+    <script>
+        $wire.on('post-created', () => {
+            console.log('bateu aqui');
+            initFlowbite();
+            
+        });
+    </script>
+    @endscript
+</div> 
