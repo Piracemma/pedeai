@@ -52,7 +52,7 @@ class ItensCategoria extends Component
 
         session()->flash('deletado', 'Criado com sucesso!');
 
-        $this->redirect('/cadastros/categorias');
+        return $this->redirectRoute('cadastros.categorias', navigate: true);
 
     }
 }

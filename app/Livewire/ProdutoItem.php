@@ -31,12 +31,12 @@ class ProdutoItem extends Component
 
         session()->flash('deletado', 'Criado com sucesso!');
 
-        $this->redirect('/lista-produtos');
+        return $this->redirectRoute('listaprodutos', navigate: true);
     }
 
     public function editar()
     {
-        return to_route('editarproduto',['produto' => $this->produtoItem->id]);
+        return $this->redirectRoute('editarproduto', ['produto' => $this->produtoItem], navigate: true);
     }
 
 }

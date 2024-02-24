@@ -42,7 +42,7 @@ class Produtos extends Component
             session()->flash('erro', 'Erro ao criar Opcional!');
         }
 
-        $this->redirect('/cadastros/produtos');
+        return $this->redirectRoute('listaprodutos', navigate: true);
 
     }
     
