@@ -1,10 +1,12 @@
+import 'flowbite';
 import { initFlowbite } from 'flowbite';
 import './bootstrap';
-import mask from '@alpinejs/mask'
 
-import 'flowbite';
+document.addEventListener("livewire:navigating", () => {
+    initFlowbite();
+});
+
 document.addEventListener('livewire:navigated', () => {
-    Alpine.plugin(mask)
     initFlowbite();
 
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
