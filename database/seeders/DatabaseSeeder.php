@@ -20,5 +20,11 @@ class DatabaseSeeder extends Seeder
             'password' => 'Matheus@123',
             'vendedor' => true
         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Matheus Rodrigues',
+            'username' => 'piracemma',
+            'password' => 'Matheus@123',
+            'vendedor' => false
+        ]);
     }
 }

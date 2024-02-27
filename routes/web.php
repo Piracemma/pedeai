@@ -5,6 +5,7 @@ use App\Livewire\Cadastros;
 use App\Livewire\Categorias;
 use App\Livewire\Dashboard;
 use App\Livewire\EditarProduto;
+use App\Livewire\Home;
 use App\Livewire\ListaProdutos;
 use App\Livewire\Produtos;
 use App\Livewire\Vendedor;
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'usuario'])->group(function () {
 
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/compre/{username}', Home::class)->name('home');
 
 });
 
