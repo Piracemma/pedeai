@@ -16,8 +16,7 @@ class ProdutoItem extends Component
     public function render()
     {
         return view('livewire.produto-item',[
-            'categoria_atual' => Categoria::query()->where('id',$this->produtoItem->categoria_id)->first(),
-            'todas_categorias' => user()->categorias()->get()
+            'categoria_atual' => Categoria::query()->where('id',$this->produtoItem->categoria_id)->first()
         ]);
     }
 
