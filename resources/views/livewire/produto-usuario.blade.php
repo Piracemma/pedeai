@@ -18,7 +18,7 @@
         </div>
         <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
             <div class="flex justify-center items-center">
-                <div id="vermais-{{ $produtoItem->id }}" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div id="vermais-{{ $produtoItem->id }}" tabindex="-1" class="flex justify-center items-center fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative w-full max-w-7xl max-h-full">
                         <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -57,17 +57,38 @@
                                     <img width="250" class="rounded-md" src="{{ url($produtoItem->imagem) }}" alt="{{ $produtoItem->nome }}">
                                 </div>
 
+                                <div class="mb-3 text-start">
+                                    <p class="font-semibold text-lg text-start text-orange-500">Quantidade:</p>
+                                    <input wire:model="quantidade" type="number" step="1.00" class="border-gray-300 bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-orange-500 dark:focus:border-orange-500 focus:ring-orange-500 dark:focus:ring-orange-500 rounded-md shadow-sm w-20 text-center"/>
+                                    @error('quantidade')
+                                        <x-input-error :messages="$message" />
+                                    @enderror
+                                </div>
+
                                 <div class="mb-3">
                                     <p class="font-semibold text-lg text-start text-orange-500">Observação:</p>
                                     
-                                    <textarea class="border-gray-300 bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" 
+                                    <textarea wire:model="observacao" class="border-gray-300 bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-orange-500 dark:focus:border-orange-500 focus:ring-orange-500 dark:focus:ring-orange-500 rounded-md shadow-sm w-full" 
                                     rows="3"></textarea>
+                                    @error('observacao')
+                                        <x-input-error :messages="$message" />
+                                    @enderror
                                 </div>
                                 
                             </div>
                             <!-- Modal footer -->
                             <div class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="vermais-{{ $produtoItem->id }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">carrinho</button>
+                                <button wire:click="adicionar" data-modal-hide="vermais-{{ $produtoItem->id }}" class="text-white bg-orange-500 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-500 dark:hover:bg-orange-500 dark:focus:ring-orange-600">
+                                
+                                    <svg class="stroke-white w-5 h-5 stroke-2 inline-block mr-3" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 20a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"></path>
+                                        <path d="M20 20a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"></path>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg>
+
+                                    Adicionar
+
+                                </button>
                             </div>
                         </div>
                     </div>

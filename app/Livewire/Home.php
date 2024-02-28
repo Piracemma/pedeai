@@ -28,6 +28,7 @@ class Home extends Component
     {
         return view('livewire.home', [
             'categorias' => $this->vendedor->categorias()->get(),
+            'vendedor' => $this->vendedor->id
         ]);
     }
 }
