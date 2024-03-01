@@ -33,7 +33,7 @@ class ItensCategoria extends Component
         $this->validate();
 
         $this->categoria->update([
-            'nome' => $this->novaCategoria
+            'nome' => $this->novaCategoria,
         ]);
 
         session()->flash('editado', 'Criado com sucesso!');

@@ -15,7 +15,7 @@ class ValidaSenha implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $padrao = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#\/])[A-Za-z\d@$!%*?&#\/]{8,20}$/';
-        if(!preg_match($padrao, $value) && strlen($value) >= 8){
+        if (! preg_match($padrao, $value) && strlen($value) >= 8) {
             $fail('A senha deve conter ao menos uma letra maiuscula, um numero e um caracter especial');
         }
     }

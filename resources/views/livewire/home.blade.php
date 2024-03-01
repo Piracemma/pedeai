@@ -14,7 +14,9 @@
                     @if ($produtos_categoria->isNotEmpty())
                         <h1 class="text-3xl text-orange-500">{{ $categoria->nome }}</h1>
                         @foreach ($produtos_categoria as $produto)
-                            <livewire:produto-usuario :produtoItem="$produto" wire:key="produtouser-{{ $produto->id }}" />
+
+                            <x-produto-usuario :produtoItem="$produto" :categoria_atual="$categoria"/>
+
                         @endforeach
                     @endif                    
                 @endforeach

@@ -5,9 +5,8 @@ namespace App\Livewire;
 use App\Models\Carrinho as ModelsCarrinho;
 use App\Models\Produto;
 use App\Models\User;
-use Closure;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -29,17 +28,17 @@ class Carrinho extends Component
         $sum_produtos = 0;
 
         $count_produtos = 0;
-        
-        foreach($carrinho as $produto){
+
+        foreach ($carrinho as $produto) {
 
             $valor = Produto::query()->where('id', $produto->produto_id)->first();
 
-            if(isset($valor->id)){
-                $sum_produtos = $sum_produtos + ( $produto->quantidade * $valor->preco );
+            if (isset($valor->id)) {
+                $sum_produtos = $sum_produtos + ($produto->quantidade * $valor->preco);
                 $count_produtos = $count_produtos + $produto->quantidade;
             } else {
                 ModelsCarrinho::query()->where('produto_id', $produto->produto_id)->delete();
-            }            
+            }
 
         }
 
@@ -56,13 +55,52 @@ class Carrinho extends Component
     public function render()
     {
         return view('livewire.carrinho', [
-            'produtos' => 'podutos'
+            'produtos' => 'podutos',
         ]);
     }
 
     #[On('carrinho')]
-    public function refresh(){
+    public function refresh()
+    {
         $this->mount();
     }
 
+    public function remover($id_carrinho)
+    {
+        if (! Gate::allows('delete-usuario', [$id_carrinho])) {
+            abort(403);
+        } else {
+            ModelsCarrinho::query()->where('id', $id_carrinho)->delete();
+            $this->dispatch('carrinho');
+        }
+    }
 }
+
+/*
+class ItemCarrinho extends Component
+{
+    public Produto $produtoCarrinho;
+    public Carrinho $idcarrinho;
+    public int $quantidade;
+    public ?string $observacaoproduto;
+    public float $total;
+
+    public function mount(Produto $produtocarrinho, Carrinho $idcarrinho)
+    {
+        $this->idcarrinho = $idcarrinho;
+        $this->produtoCarrinho = $produtocarrinho;
+        $this->total = $this->produtoCarrinho->preco * $this->quantidade;
+    }
+
+    public function render()
+    {
+        return view('livewire.item-carrinho');
+    }
+
+    public function remover()
+    {
+        $this->idcarrinho->delete();
+    }
+}
+
+*/

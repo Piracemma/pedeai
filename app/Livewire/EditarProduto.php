@@ -31,8 +31,9 @@ class EditarProduto extends Component
     public function render()
     {
         $this->authorize('view', $this->produto);
+
         return view('livewire.editar-produto', [
-            'todas_categorias' => user()->categorias()->get()
+            'todas_categorias' => user()->categorias()->get(),
         ]);
     }
 
@@ -44,7 +45,7 @@ class EditarProduto extends Component
         $this->produto->update([
             'descricao' => $this->descricao,
             'preco' => $this->preco,
-            'categoria_id' => $this->categoria
+            'categoria_id' => $this->categoria,
         ]);
 
         session()->flash('editado', 'Criado com sucesso!');
@@ -57,5 +58,4 @@ class EditarProduto extends Component
     {
         return $this->redirectRoute('listaprodutos', navigate: true);
     }
-
 }
