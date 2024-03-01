@@ -15,11 +15,11 @@ class Vendedor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->user()->vendedor == true){
+        if ($request->user()->vendedor == true) {
             return $next($request);
         } else {
             return redirect('dashboard');
         }
-        
+
     }
 }

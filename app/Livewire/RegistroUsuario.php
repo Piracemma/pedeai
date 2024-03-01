@@ -3,16 +3,15 @@
 namespace App\Livewire;
 
 use App\Models\User;
-use Livewire\Component;
-use Illuminate\Validation\Rules;
-use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 use App\Rules\ValidaSenha;
 use App\Rules\ValidaVendedor;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class RegistroUsuario extends Component
 {
@@ -43,7 +42,7 @@ class RegistroUsuario extends Component
 
         $vendedor = false;
 
-        if($this->vendedor == 'true') {
+        if ($this->vendedor == 'true') {
             $vendedor = true;
         }
 
@@ -51,7 +50,7 @@ class RegistroUsuario extends Component
             'name' => $this->name,
             'username' => $this->username,
             'password' => Hash::make($this->password),
-            'vendedor' => $vendedor
+            'vendedor' => $vendedor,
         ]);
 
         //event(new Registered($user));

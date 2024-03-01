@@ -17,10 +17,10 @@ class ValidaCategoria implements ValidationRule
         $id = (int) $value;
 
         $categoria = user()->categorias()->where('id', $id)->limit(1)->get();
-        
-        if($categoria->isEmpty()){
+
+        if ($categoria->isEmpty()) {
             $fail('Categoria não encontrada!');
         }
-        
+
     }
 }

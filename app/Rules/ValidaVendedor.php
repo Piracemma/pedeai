@@ -14,7 +14,7 @@ class ValidaVendedor implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if($value != 'false' && $value != 'true'){
+        if ($value != 'false' && $value != 'true') {
             $fail('Erro, repita o processo!');
         }
     }

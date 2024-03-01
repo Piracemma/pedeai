@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\Categoria;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -12,11 +11,11 @@ class Categorias extends Component
     #[Validate(['required', 'string', 'min:3', 'max:30'])]
     public string $categoria = '';
 
-    #[Layout('components.layouts.app',['cadastros' => true])]
+    #[Layout('components.layouts.app', ['cadastros' => true])]
     public function render()
     {
         return view('livewire.categorias', [
-            'categorias' => user()->categorias()->select(['id', 'nome'])->orderBy('updated_at', 'desc')->get()
+            'categorias' => user()->categorias()->select(['id', 'nome'])->orderBy('updated_at', 'desc')->get(),
         ]);
     }
 
@@ -31,12 +30,11 @@ class Categorias extends Component
 
         $this->categoria = '';
 
-        if(!empty($categoria->id)){
+        if (! empty($categoria->id)) {
             session()->flash('sucesso', 'Criado com sucesso!');
         } else {
             session()->flash('erro', 'Erro ao criar Categoria!');
         }
         $this->dispatch('post-created');
     }
-
 }

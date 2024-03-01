@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Escadashop',
             'username' => 'escadashop',
             'password' => 'Matheus@123',
-            'vendedor' => true
+            'vendedor' => true,
         ]);
         \App\Models\User::factory()->create([
             'name' => 'Matheus Rodrigues',
             'username' => 'piracemma',
             'password' => 'Matheus@123',
-            'vendedor' => false
+            'vendedor' => false,
         ]);
     }
 }
