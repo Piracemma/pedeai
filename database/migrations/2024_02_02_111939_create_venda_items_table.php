@@ -19,7 +19,6 @@ return new class extends Migration
             $table->float('preco');
             $table->float('quantidade');
             $table->float('total');
-            $table->boolean('opcionais')->default(false);
             $table->text('observacao');
             $table->timestamps();
         });

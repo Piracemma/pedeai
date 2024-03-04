@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('viewvendedor', function (User $user, $username) {
             $vendedor = User::query()->where('username', $username)->first();
 
-            return $vendedor?->username === $username;
+            return $vendedor?->username === $username && $vendedor?->vendedor == true;
         });
         Gate::define('delete-usuario', function (User $user, $id_carrinho) {
             $carrinho = Carrinho::query()->find($id_carrinho);
