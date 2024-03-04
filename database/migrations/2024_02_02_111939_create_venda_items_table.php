@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Produto;
 use App\Models\Venda;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +19,6 @@ return new class extends Migration
             $table->float('preco');
             $table->float('quantidade');
             $table->float('total');
-            $table->boolean('opcionais')->default(false);
             $table->text('observacao');
             $table->timestamps();
         });

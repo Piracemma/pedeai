@@ -3,7 +3,6 @@
 namespace App\Livewire\Forms;
 
 use App\Rules\ValidaCategoria;
-use App\Rules\ValidaOpcionais;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -31,7 +30,7 @@ class ProdutosForm extends Form
     public function rules()
     {
         return [
-            'imagem' => ['image', Rule::dimensions()->ratio(1/1)],
+            'imagem' => ['image', Rule::dimensions()->ratio(1 / 1)],
         ];
     }
 }

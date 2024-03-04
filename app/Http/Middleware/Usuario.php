@@ -15,7 +15,7 @@ class Usuario
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->user()->vendedor == false){
+        if ($request->user()->vendedor == false) {
             return $next($request);
         } else {
             return redirect('vendedor');

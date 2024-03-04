@@ -13,12 +13,12 @@ class Produtos extends Component
 
     public ProdutosForm $produto;
 
-    #[Layout('components.layouts.app',['cadastros' => true])]
+    #[Layout('components.layouts.app', ['cadastros' => true])]
     public function render()
-    {        
+    {
         return view('livewire.produtos', [
             'todas_categorias' => user()->categorias()->get(),
-            'todos_produtos' => user()->produtos()->get()
+            'todos_produtos' => user()->produtos()->get(),
         ]);
     }
 
@@ -36,7 +36,7 @@ class Produtos extends Component
             'imagem' => $imagem,
         ]);
 
-        if(!empty($produto->id)){
+        if (! empty($produto->id)) {
             session()->flash('sucesso', 'Criado com sucesso!');
         } else {
             session()->flash('erro', 'Erro ao criar Opcional!');
@@ -45,5 +45,4 @@ class Produtos extends Component
         return $this->redirectRoute('listaprodutos', navigate: true);
 
     }
-    
 }

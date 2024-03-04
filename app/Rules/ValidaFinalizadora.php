@@ -2,10 +2,11 @@
 
 namespace App\Rules;
 
+use App\Models\Finalizadora;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class ValidaSenha implements ValidationRule
+class ValidaFinalizadora implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -14,9 +15,12 @@ class ValidaSenha implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $padrao = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#\/])[A-Za-z\d@$!%*?&#\/]{8,20}$/';
-        if (! preg_match($padrao, $value) && strlen($value) >= 8) {
-            $fail('A senha deve conter ao menos uma letra maiuscula, um numero e um caracter especial');
+        $id = (int) $value;
+
+        $finalizadora = Finalizadora::query()->where('id', $id)->get();
+
+        if($finalizadora->isEmpty()){
+            $fail('Finalizadora não encontrada');
         }
     }
 }
