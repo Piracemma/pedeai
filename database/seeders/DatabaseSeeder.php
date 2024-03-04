@@ -26,5 +26,14 @@ class DatabaseSeeder extends Seeder
             'password' => 'Matheus@123',
             'vendedor' => false,
         ]);
+        \App\Models\Finalizadora::factory()->create([
+            'nome' => 'Debito'
+        ]);
+        \App\Models\Finalizadora::factory()->create([
+            'nome' => 'Dinheiro'
+        ]);
+        \App\Models\Finalizadora::factory()->create([
+            'nome' => 'Credito'
+        ]);
     }
 }

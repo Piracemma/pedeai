@@ -18,8 +18,6 @@ return new class extends Migration
             $table->foreignIdFor(Finalizadora::class);
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(User::class, 'vendedor_id');
-            $table->float('produtos');
-            $table->float('frete');
             $table->float('total');
             $table->text('observacao');
             $table->timestamps();

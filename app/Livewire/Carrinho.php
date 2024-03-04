@@ -72,35 +72,13 @@ class Carrinho extends Component
         } else {
             ModelsCarrinho::query()->where('id', $id_carrinho)->delete();
             $this->dispatch('carrinho');
+            $this->js('initFlowbite()');
         }
     }
+
+    public function finalizar()
+    {
+        return $this->redirectRoute('finalizar', ['username' => $this->vendedor->username], navigate: true);
+    }
+
 }
-
-/*
-class ItemCarrinho extends Component
-{
-    public Produto $produtoCarrinho;
-    public Carrinho $idcarrinho;
-    public int $quantidade;
-    public ?string $observacaoproduto;
-    public float $total;
-
-    public function mount(Produto $produtocarrinho, Carrinho $idcarrinho)
-    {
-        $this->idcarrinho = $idcarrinho;
-        $this->produtoCarrinho = $produtocarrinho;
-        $this->total = $this->produtoCarrinho->preco * $this->quantidade;
-    }
-
-    public function render()
-    {
-        return view('livewire.item-carrinho');
-    }
-
-    public function remover()
-    {
-        $this->idcarrinho->delete();
-    }
-}
-
-*/
