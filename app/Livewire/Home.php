@@ -59,7 +59,7 @@ class Home extends Component
 
             } else {
 
-                session()->flash('errocarrinho', 'Criado com sucesso!');
+                session()->flash('errocarrinho', 'Erro, tente novaemnte!');
 
             }
         } else {

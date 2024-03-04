@@ -1,17 +1,13 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Vendedor') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Redirecionado para vendedor com sucesso") }}
-                </div>
-            </div>
+    <x-popup />
+    <x-container-g>
+    
+        <div class="w-5/6 mx-auto">
+            @foreach ($vendas as $compra)
+                <x-compra-dashboard :venda_itens="$compra->id" :compra="$compra"/>
+            @endforeach
+            {{ $vendas->onEachSide(3)->links() }}
         </div>
-    </div>
+        
+    </x-container-g>
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\CompraRealizadaEvent;
 use App\Models\Carrinho;
 use App\Models\Finalizadora;
 use App\Models\Produto;
@@ -28,7 +29,7 @@ class Finalizar extends Component
     public ?int $finalizadora;
 
     #[Validate(['string', 'max:255'])]
-    public ?string $observacao_venda;
+    public string $observacao_venda = '';
 
     public function mount($username)
     {
@@ -145,6 +146,7 @@ class Finalizar extends Component
                 $produto->delete();
 
             }
+            CompraRealizadaEvent::dispatch($this->vendedor->id);
             session()->flash('sucesso', 'Finalizado com sucesso!');
             $this->redirectRoute('dashboard', navigate:true);
         } else {
