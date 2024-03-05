@@ -7,6 +7,7 @@ use App\Livewire\Dashboard;
 use App\Livewire\EditarProduto;
 use App\Livewire\Finalizar;
 use App\Livewire\Home;
+use App\Livewire\Index;
 use App\Livewire\ListaProdutos;
 use App\Livewire\Produtos;
 use App\Livewire\Vendedor;
@@ -23,10 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    //Auth::loginUsingId(1, true);
-    return view('welcome');
-});
+Route::get('/', Index::class)->name('index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

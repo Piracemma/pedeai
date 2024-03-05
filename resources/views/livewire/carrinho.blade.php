@@ -26,17 +26,13 @@
                     </button>
                 </div>
                 <!-- Modal body --> 
-                <div class="p-4 md:p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    
+                <div class="p-4 md:p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">                    
                     
                     @foreach ($carrinho as $item)                        
                         
                         <x-produto-carrinho :id_carrinho="$item->id" :id_produto="$item->produto_id" :quantidade="$item->quantidade" :observacaoproduto="$item->observacao_produto"/>
                     
                     @endforeach
-
-                    
-                    
                     
                 </div>
                 <!-- Modal footer -->

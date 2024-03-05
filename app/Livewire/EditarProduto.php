@@ -48,7 +48,7 @@ class EditarProduto extends Component
             'categoria_id' => $this->categoria,
         ]);
 
-        session()->flash('editado', 'Criado com sucesso!');
+        session()->flash('editado', 'Editado com sucesso!');
 
         return $this->redirectRoute('listaprodutos', navigate: true);
 

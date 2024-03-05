@@ -26,7 +26,7 @@ class ProdutoItem extends Component
 
         $this->produtoItem->delete();
 
-        session()->flash('deletado', 'Criado com sucesso!');
+        session()->flash('deletado', 'Deletado com sucesso!');
 
         return $this->redirectRoute('listaprodutos', navigate: true);
     }
