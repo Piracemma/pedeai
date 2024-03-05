@@ -39,7 +39,7 @@ class Produtos extends Component
         if (! empty($produto->id)) {
             session()->flash('sucesso', 'Criado com sucesso!');
         } else {
-            session()->flash('erro', 'Erro ao criar Opcional!');
+            session()->flash('erro', 'Erro, tente novamente!');
         }
 
         return $this->redirectRoute('listaprodutos', navigate: true);

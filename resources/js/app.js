@@ -2,7 +2,7 @@ import 'flowbite';
 import { initFlowbite } from 'flowbite';
 import './bootstrap';
 
-document.addEventListener("livewire:navigating", () => {
+document.addEventListener('livewire:navigating', () => {
     initFlowbite();
 });
 

@@ -36,7 +36,7 @@ class ItensCategoria extends Component
             'nome' => $this->novaCategoria,
         ]);
 
-        session()->flash('editado', 'Criado com sucesso!');
+        session()->flash('editado', 'Editado com sucesso!');
 
         $this->redirect('/cadastros/categorias');
 
@@ -50,7 +50,7 @@ class ItensCategoria extends Component
 
         $this->categoria->delete();
 
-        session()->flash('deletado', 'Criado com sucesso!');
+        session()->flash('deletado', 'Deletado com sucesso!');
 
         return $this->redirectRoute('cadastros.categorias', navigate: true);
 
