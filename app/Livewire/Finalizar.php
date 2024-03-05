@@ -128,30 +128,41 @@ class Finalizar extends Component
         ]);
 
         if(isset($venda->id)){
-            foreach ($this->carrinho as $produto) {
 
-                $valor = Produto::query()->where('id', $produto->produto_id)->first();
+            if($this->carrinho->isNotEmpty()){
 
-                $venda->vendaitens()->create([
-                    'produto' => $valor->nome,
-                    'preco' => $valor->preco,
-                    'quantidade' => $produto->quantidade,
-                    'total' => ($valor->preco * $produto->quantidade),
-                    'observacao' => $produto->observacao_produto,
-                ]);
+                foreach ($this->carrinho as $produto) {
 
+                    $valor = Produto::query()->where('id', $produto->produto_id)->first();
+
+                    $venda->vendaitens()->create([
+                        'produto' => $valor->nome,
+                        'preco' => $valor->preco,
+                        'quantidade' => $produto->quantidade,
+                        'total' => ($valor->preco * $produto->quantidade),
+                        'observacao' => $produto->observacao_produto,
+                    ]);
+
+                }
+                foreach ($this->carrinho as $produto) {
+
+                    $produto->delete();
+
+                }
+                CompraRealizadaEvent::dispatch($this->vendedor->id);
+                session()->flash('sucesso', 'Finalizado com sucesso!');
+                $this->redirectRoute('dashboard', navigate:true);
+
+            } else {
+
+                $this->redirectRoute('home', ['username' => $this->vendedor->username], navigate:true);
             }
-            foreach ($this->carrinho as $produto) {
 
-                $produto->delete();
-
-            }
-            CompraRealizadaEvent::dispatch($this->vendedor->id);
-            session()->flash('sucesso', 'Finalizado com sucesso!');
-            $this->redirectRoute('dashboard', navigate:true);
         } else {
+
             session()->flash('erro', 'Erro ao finalizar a venda, tente novamente!');
             $this->redirectRoute('finalizar', ['username' => $this->vendedor->username], navigate:true);
+            
         }
     }
 }
